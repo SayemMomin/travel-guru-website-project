@@ -1,25 +1,46 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { createContext, useState } from 'react';
 import './App.css';
+import Header from './components/Header/Header';
+import Home from './components/Home/Home';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+} from "react-router-dom";
+import Destination from './components/Destination/Destination';
+import DestinationDetail from './components/DestinationDetail/DestinationDetail';
+import Login from './components/Login/Login';
+import PrivateRoute from './components/PrivateRoute/PrivateRoute';
+
+export const TravelContext = createContext();
 
 function App() {
+  const [travel, setTravel] = useState({})
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <TravelContext.Provider value={[travel, setTravel]}>
+      <h2>Bismillah......</h2>
+      <Router>
+        <Header></Header>
+        
+        <Switch>
+          <Route path='/home'>
+            <Home></Home>
+          </Route>
+          <Route path='/destination/:travelKey'>
+            <Destination></Destination>
+          </Route>
+          <Route path='/login'>
+            <Login></Login>
+          </Route>
+          <PrivateRoute path='/destinationDetails'>
+            <DestinationDetail></DestinationDetail>
+          </PrivateRoute>
+          <Route exact path="/">
+              <Home />
+            </Route>
+        </Switch>
+      </Router>
+    </TravelContext.Provider>
   );
 }
 

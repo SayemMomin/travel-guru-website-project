@@ -18,7 +18,6 @@ function App() {
   const [travel, setTravel] = useState({})
   return (
     <TravelContext.Provider value={[travel, setTravel]}>
-      <h2>Bismillah......</h2>
       <Router>
         <Header></Header>
         

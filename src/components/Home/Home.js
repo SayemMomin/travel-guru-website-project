@@ -8,7 +8,7 @@ const Home = () => {
     return (
         <div className='text-light bg-img d-flex justify-content-center m-2 '>
         {
-            travelData.map(travelInfo => <TravelInfo travelInfo={travelInfo}></TravelInfo> )
+            travelData.map(travelInfo => <TravelInfo key={travelInfo.id} travelInfo={travelInfo}></TravelInfo> )
         }
 
         
